@@ -67,6 +67,21 @@ ansible-galaxy install while_true_do.srv_docker
 ---
 # defaults file for while_true_do.srv_docker
 
+wtd_srv_docker_packages: "docker"
+# State can be present, latest, absent
+wtd_srv_docker_packages_state: "present"
+
+wtd_srv_docker_service: "docker"
+# State can be started, stopped, restarted
+wtd_srv_docker_service_state: "started"
+# Enable or diable the service on reboot
+wtd_srv_docker_service_enabled: "yes"
+
+wtd_srv_docker_group: "docker"
+# State can be present or absent
+wtd_srv_docker_group_state: "present"
+wtd_srv_docker_group_users: []
+
 ```
 
 ### Example Playbook
@@ -83,6 +98,18 @@ can be done in a
 - hosts: all
   roles:
     - role: while_true_do.srv_docker
+```
+
+#### Advanced
+
+```
+- hosts: all
+  roles:
+    - role: while_true_do.srv_docker
+      wtd_srv_docker_group_users:
+        - user1
+        - user2
+      wtd_srv_docker_service_enabled: "no"
 ```
 
 ## Testing
