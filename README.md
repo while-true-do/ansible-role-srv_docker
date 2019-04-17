@@ -7,16 +7,16 @@ license: BSD-3-Clause
 -->
 
 <!-- github shields -->
-![Github (tag)](https://img.shields.io/github/tag/while-true-do/ansible-role-srv_docker.svg)
-![Github (license)](https://img.shields.io/github/license/while-true-do/ansible-role-srv_docker.svg)
-![Github (issues)](https://img.shields.io/github/issues/while-true-do/ansible-role-srv_docker.svg)
-![Github (pull requests)](https://img.shields.io/github/issues-pr/while-true-do/ansible-role-srv_docker.svg)
+[![Github (tag)](https://img.shields.io/github/tag/while-true-do/ansible-role-srv_docker.svg)](https://github.com/while-true-do/ansible-role-srv_docker/tags)
+[![Github (license)](https://img.shields.io/github/license/while-true-do/ansible-role-srv_docker.svg)](https://github.com/while-true-do/ansible-role-srv_docker/blob/master/LICENSE)
+[![Github (issues)](https://img.shields.io/github/issues/while-true-do/ansible-role-srv_docker.svg)](https://github.com/while-true-do/ansible-role-srv_docker/issues)
+[![Github (pull requests)](https://img.shields.io/github/issues-pr/while-true-do/ansible-role-srv_docker.svg)](https://github.com/while-true-do/ansible-role-srv_docker/pulls)
 <!-- travis shields -->
-![Travis (com)](https://img.shields.io/travis/com/while-true-do/ansible-role-srv_docker.svg)
+[![Travis (com)](https://img.shields.io/travis/com/while-true-do/ansible-role-srv_docker.svg)](https://travis-ci.com/while-true-do/ansible-role-srv_docker)
 <!-- ansible shields -->
-![Ansible (min. version)](https://img.shields.io/badge/dynamic/yaml.svg?label=Min.%20Ansible%20Version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fwhile-true-do%2Fansible-role-srv_docker%2Fmaster%2Fmeta%2Fmain.yml&query=%24.galaxy_info.min_ansible_version&colorB=black)
-![Ansible (platforms)](https://img.shields.io/badge/dynamic/yaml.svg?label=Supported%20OS&url=https%3A%2F%2Fraw.githubusercontent.com%2Fwhile-true-do%2Fansible-role-srv_docker%2Fmaster%2Fmeta%2Fmain.yml&query=galaxy_info.platforms%5B*%5D.name&colorB=black)
-![Ansible (tags)](https://img.shields.io/badge/dynamic/yaml.svg?label=Galaxy%20Tags&url=https%3A%2F%2Fraw.githubusercontent.com%2Fwhile-true-do%2Fansible-role-srv_docker%2Fmaster%2Fmeta%2Fmain.yml&query=%24.galaxy_info.galaxy_tags%5B*%5D&colorB=black)
+[![Ansible (min. version)](https://img.shields.io/badge/dynamic/yaml.svg?label=Min.%20Ansible%20Version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fwhile-true-do%2Fansible-role-srv_docker%2Fmaster%2Fmeta%2Fmain.yml&query=%24.galaxy_info.min_ansible_version&colorB=black)](https://galaxy.ansible.com/while_true_do/srv_docker)
+[![Ansible (platforms)](https://img.shields.io/badge/dynamic/yaml.svg?label=Supported%20OS&url=https%3A%2F%2Fraw.githubusercontent.com%2Fwhile-true-do%2Fansible-role-srv_docker%2Fmaster%2Fmeta%2Fmain.yml&query=galaxy_info.platforms%5B*%5D.name&colorB=black)](https://galaxy.ansible.com/while_true_do/srv_docker)
+[![Ansible (tags)](https://img.shields.io/badge/dynamic/yaml.svg?label=Galaxy%20Tags&url=https%3A%2F%2Fraw.githubusercontent.com%2Fwhile-true-do%2Fansible-role-srv_docker%2Fmaster%2Fmeta%2Fmain.yml&query=%24.galaxy_info.galaxy_tags%5B*%5D&colorB=black)](https://galaxy.ansible.com/while_true_do/srv_docker)
 
 # Ansible Role: srv_docker
 
@@ -53,7 +53,7 @@ Install from [Github](https://github.com/while-true-do/ansible-role-srv_docker)
 git clone https://github.com/while-true-do/ansible-role-srv_docker.git while_true_do.srv_docker
 ```
 
-Install from [Ansible Galaxy](https://galaxy.ansible.com/while_true_do/srv_docker)]
+Install from [Ansible Galaxy](https://galaxy.ansible.com/while_true_do/srv_docker)
 ```
 ansible-galaxy install while_true_do.srv_docker
 ```
@@ -62,7 +62,6 @@ ansible-galaxy install while_true_do.srv_docker
 
 ### Role Variables
 
-<!-- TODO: Provide Variables, describe them and renove this line. -->
 ```
 ---
 # defaults file for while_true_do.srv_docker
