@@ -10,13 +10,25 @@
     - docker
     - package
 
+- name: Gather package facts
+  package_facts:
+    manager: auto
+  when:
+    - wtd_srv_docker_mask_firewalld
+  tags:
+    - docker
+    - package
+    - firewall
+
 - name: Manage firewalld Service
   systemd:
     name: firewalld
     state: stopped
     masked: true
   become: true
-  when: wtd_srv_docker_mask_firewalld
+  when:
+    - wtd_srv_docker_mask_firewalld
+    - '"firewalld" in ansible_facts.packages'
   tags:
     - docker
     - firewall
