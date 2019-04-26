@@ -1,24 +1,33 @@
 ---
 # tasks file for while_true_do.srv_docker
 
-- name: Include distribution Tasks
-  include_tasks: "{{ ansible_distribution }}.yml"
-
 - name: Manage docker Packages
   package:
     name: "{{ wtd_srv_docker_packages }}"
     state: "{{ wtd_srv_docker_packages_state }}"
-  become: yes
+  become: true
   tags:
     - docker
     - package
+
+- name: Manage firewalld Service
+  systemd:
+    name: firewalld
+    state: stopped
+    masked: true
+  become: true
+  when: wtd_srv_docker_mask_firewalld
+  tags:
+    - docker
+    - firewall
+    - service
 
 - name: Manage docker Service
   service:
     name: "{{ wtd_srv_docker_service }}"
     state: "{{ wtd_srv_docker_service_state }}"
     enabled: "{{ wtd_srv_docker_service_enabled }}"
-  become: yes
+  become: true
   when:
     - ansible_virtualization_type != "docker"
     - wtd_srv_docker_packages_state != "absent"
@@ -30,7 +39,7 @@
   group:
     name: "{{ wtd_srv_docker_group }}"
     state: "{{ wtd_srv_docker_group_state }}"
-  become: yes
+  become: true
   when: wtd_srv_docker_packages_state != "absent"
   tags:
     - docker
@@ -40,8 +49,8 @@
   user:
     name: "{{ item }}"
     groups: "{{ wtd_srv_docker_group }}"
-    append: yes
-  become: yes
+    append: true
+  become: true
   loop: "{{ wtd_srv_docker_group_users }}"
   when:
     - wtd_srv_docker_group_state == "present"

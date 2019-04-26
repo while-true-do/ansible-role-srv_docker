@@ -41,10 +41,11 @@ This role is setting up docker and configuring it from official repositories.
 
 Used Modules:
 
--   [Ansible Module Package](https://docs.ansible.com/ansible/latest/modules/package_module.html)
--   [Ansible Module Service](https://docs.ansible.com/ansible/latest/modules/service_module.html)
--   [Ansible Module Group](https://docs.ansible.com/ansible/latest/modules/group_module.html)
--   [Ansible Module USer](https://docs.ansible.com/ansible/latest/modules/user_module.html)
+-   [Ansible Package Module](https://docs.ansible.com/ansible/latest/modules/package_module.html)
+-   [Ansible Service Module](https://docs.ansible.com/ansible/latest/modules/service_module.html)
+-   [Ansible Systemd Module](https://docs.ansible.com/ansible/latest/modules/systemd_module.html)
+-   [Ansible Group Module](https://docs.ansible.com/ansible/latest/modules/group_module.html)
+-   [Ansible User Module](https://docs.ansible.com/ansible/latest/modules/user_module.html)
 
 ## Installation
 
@@ -74,13 +75,15 @@ wtd_srv_docker_service: "docker"
 # State can be started, stopped, restarted
 wtd_srv_docker_service_state: "started"
 # Enable or diable the service on reboot
-wtd_srv_docker_service_enabled: "yes"
+wtd_srv_docker_service_enabled: true
 
 wtd_srv_docker_group: "docker"
 # State can be present or absent
 wtd_srv_docker_group_state: "present"
 wtd_srv_docker_group_users: []
 
+# Firewalld conflicts with dockers firewall management
+wtd_srv_docker_mask_firewalld: true
 ```
 
 ### Example Playbook
