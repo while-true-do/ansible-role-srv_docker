@@ -1,6 +1,12 @@
 ---
 # tasks file for while_true_do.srv_docker
 
+- name: Gather package facts
+  package_facts:
+    manager: auto
+  tags:
+    - package
+
 - name: Manage docker Packages
   package:
     name: "{{ wtd_srv_docker_packages }}"
@@ -10,16 +16,6 @@
     - docker
     - package
 
-- name: Gather package facts
-  package_facts:
-    manager: auto
-  when:
-    - wtd_srv_docker_mask_firewalld
-  tags:
-    - docker
-    - package
-    - firewall
-
 - name: Manage firewalld Service
   systemd:
     name: firewalld
@@ -28,7 +24,7 @@
   become: true
   when:
     - wtd_srv_docker_mask_firewalld
-    - '"firewalld" in ansible_facts.packages'
+    - '"firewalld" in packages'
   tags:
     - docker
     - firewall

@@ -41,11 +41,12 @@ This role is setting up docker and configuring it from official repositories.
 
 Used Modules:
 
--   [Ansible Package Module](https://docs.ansible.com/ansible/latest/modules/package_module.html)
--   [Ansible Service Module](https://docs.ansible.com/ansible/latest/modules/service_module.html)
--   [Ansible Systemd Module](https://docs.ansible.com/ansible/latest/modules/systemd_module.html)
--   [Ansible Group Module](https://docs.ansible.com/ansible/latest/modules/group_module.html)
--   [Ansible User Module](https://docs.ansible.com/ansible/latest/modules/user_module.html)
+-   [Ansible package_facts Module](https://docs.ansible.com/ansible/latest/modules/package_facts_module.html)
+-   [Ansible package Module](https://docs.ansible.com/ansible/latest/modules/package_module.html)
+-   [Ansible service Module](https://docs.ansible.com/ansible/latest/modules/service_module.html)
+-   [Ansible systemd Module](https://docs.ansible.com/ansible/latest/modules/systemd_module.html)
+-   [Ansible group Module](https://docs.ansible.com/ansible/latest/modules/group_module.html)
+-   [Ansible user Module](https://docs.ansible.com/ansible/latest/modules/user_module.html)
 
 ## Installation
 
