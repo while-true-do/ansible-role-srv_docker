@@ -27,5 +27,7 @@ galaxy_info:
     - service
     - group
     - user
+    - virtualization
+    - container
 
 dependencies: []
