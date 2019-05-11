@@ -15,6 +15,3 @@ wtd_srv_docker_group: "docker"
 # State can be present or absent
 wtd_srv_docker_group_state: "present"
 wtd_srv_docker_group_users: []
-
-# Firewalld conflicts with dockers firewall management
-wtd_srv_docker_mask_firewalld: true

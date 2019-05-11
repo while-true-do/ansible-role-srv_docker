@@ -1,12 +1,6 @@
 ---
 # tasks file for while_true_do.srv_docker
 
-- name: Gather package facts
-  package_facts:
-    manager: auto
-  tags:
-    - package
-
 - name: Manage docker Packages
   package:
     name: "{{ wtd_srv_docker_packages }}"
@@ -15,20 +9,6 @@
   tags:
     - docker
     - package
-
-- name: Manage firewalld Service
-  systemd:
-    name: firewalld
-    state: stopped
-    masked: true
-  become: true
-  when:
-    - wtd_srv_docker_mask_firewalld
-    - '"firewalld" in packages'
-  tags:
-    - docker
-    - firewall
-    - service
 
 - name: Manage docker Service
   service:
@@ -53,7 +33,7 @@
     - docker
     - group
 
-- name: Manage docker Group Users
+- name: Manage docker Users
   user:
     name: "{{ item }}"
     groups: "{{ wtd_srv_docker_group }}"
