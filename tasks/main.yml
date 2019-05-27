@@ -3,12 +3,23 @@
 
 - name: Manage docker Packages
   package:
-    name: "{{ wtd_srv_docker_packages }}"
-    state: "{{ wtd_srv_docker_packages_state }}"
+    name: "{{ wtd_srv_docker_package }}"
+    state: "{{ wtd_srv_docker_package_state }}"
   become: true
   tags:
     - docker
     - package
+
+- name: Manage docker Group
+  group:
+    name: "{{ wtd_srv_docker_group }}"
+    state: "{{ wtd_srv_docker_group_state }}"
+  become: true
+  when:
+    - wtd_srv_docker_package_state != "absent"
+  tags:
+    - docker
+    - group
 
 - name: Manage docker Service
   service:
@@ -17,21 +28,11 @@
     enabled: "{{ wtd_srv_docker_service_enabled }}"
   become: true
   when:
+    - wtd_srv_docker_package_state != "absent"
     - ansible_virtualization_type != "docker"
-    - wtd_srv_docker_packages_state != "absent"
   tags:
     - docker
     - service
-
-- name: Manage docker Group
-  group:
-    name: "{{ wtd_srv_docker_group }}"
-    state: "{{ wtd_srv_docker_group_state }}"
-  become: true
-  when: wtd_srv_docker_packages_state != "absent"
-  tags:
-    - docker
-    - group
 
 - name: Manage docker Users
   user:
@@ -42,7 +43,7 @@
   loop: "{{ wtd_srv_docker_group_users }}"
   when:
     - wtd_srv_docker_group_state == "present"
-    - wtd_srv_docker_packages_state != "absent"
+    - wtd_srv_docker_package_state != "absent"
   tags:
     - docker
     - group

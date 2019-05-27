@@ -1,17 +1,20 @@
 ---
 # defaults file for while_true_do.srv_docker
 
-wtd_srv_docker_packages: "docker"
-# State can be present, latest, absent
-wtd_srv_docker_packages_state: "present"
+## Package Management
+wtd_srv_docker_package: "docker"
+# State can be present|latest|absent
+wtd_srv_docker_package_state: "present"
 
+## Service Management
 wtd_srv_docker_service: "docker"
-# State can be started, stopped, restarted
+# State can be started|stopped
 wtd_srv_docker_service_state: "started"
-# Enable or diable the service on reboot
 wtd_srv_docker_service_enabled: true
 
+## User and Group Management
 wtd_srv_docker_group: "docker"
-# State can be present or absent
+# State can be present|absent
 wtd_srv_docker_group_state: "present"
+# A list of user names.
 wtd_srv_docker_group_users: []
