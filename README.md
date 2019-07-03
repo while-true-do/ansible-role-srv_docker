@@ -95,23 +95,6 @@ can be done in a
 [playbook](https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html).
 
 #### Simple
----
-# defaults file for while_true_do.srv_docker
-
-wtd_srv_docker_packages: "docker"
-# State can be present, latest, absent
-wtd_srv_docker_packages_state: "present"
-
-wtd_srv_docker_service: "docker"
-# State can be started, stopped, restarted
-wtd_srv_docker_service_state: "started"
-# Enable or diable the service on reboot
-wtd_srv_docker_service_enabled: true
-
-wtd_srv_docker_group: "docker"
-# State can be present or absent
-wtd_srv_docker_group_state: "present"
-wtd_srv_docker_group_users: []
 
 ```
 ---
