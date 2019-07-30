@@ -6,6 +6,25 @@ wtd_srv_docker_package: "docker"
 # State can be present|latest|absent
 wtd_srv_docker_package_state: "present"
 
+# Define the source of docker:
+# Source can be dist|ce
+# dist = repository of your distribution
+# ce = official community docker repository
+wtd_srv_docker_package_source: "dist"
+# Only used for source = ce|ee
+# *_enabled can be 0|1
+wtd_srv_docker_package_edge_enabled: 0
+wtd_srv_docker_package_test_enabled: 0
+
+# Docker Compose Packages
+# State can be present|latest|absent|unmanaged
+wtd_srv_docker_compose_package_state: "unmanaged"
+# Source can be binary
+wtd_srv_docker_compose_package_source: "binary"
+# Only used, when source = binary
+wtd_srv_docker_compose_package_version: "1.24.1"
+wtd_srv_docker_compose_package_path: "/usr/local/bin/docker-compose"
+
 ## Service Management
 wtd_srv_docker_service: "docker"
 # State can be started|stopped

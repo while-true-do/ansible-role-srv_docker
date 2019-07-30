@@ -1,0 +1,11 @@
+---
+# vars file for while_true_do.srv_docker
+
+wtd_srv_docker_package:
+  - docker
+wtd_srv_docker_package_conflict:
+  - docker-ce
+  - docker-ee
+  - docker-ce-cli
+  - docker-ee-cli
+  - containerd.io

@@ -1,13 +1,22 @@
 ---
 # tasks file for while_true_do.srv_docker
 
-- name: Manage docker Packages
-  package:
-    name: "{{ wtd_srv_docker_package }}"
-    state: "{{ wtd_srv_docker_package_state }}"
-  become: true
+- name: Include docker package Tasks
+  include_tasks: "docker_{{ wtd_srv_docker_package_source }}.yml"
   tags:
     - docker
+    - container
+    - package
+    - repository
+
+- name: Include docker-compose Tasks
+  include_tasks: "docker_compose.yml"
+  when:
+    - wtd_srv_docker_compose_package_state != "unmanaged"
+  tags:
+    - docker
+    - container
+    - development
     - package
 
 - name: Manage docker Group
@@ -19,7 +28,9 @@
     - wtd_srv_docker_package_state != "absent"
   tags:
     - docker
+    - container
     - group
+    - user
 
 - name: Manage docker Service
   service:
@@ -32,6 +43,7 @@
     - ansible_virtualization_type != "docker"
   tags:
     - docker
+    - container
     - service
 
 - name: Manage docker Users
@@ -46,5 +58,6 @@
     - wtd_srv_docker_package_state != "absent"
   tags:
     - docker
+    - container
     - group
     - user

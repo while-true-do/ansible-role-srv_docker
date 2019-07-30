@@ -32,7 +32,9 @@ Setting up a docker service is very common and useful.
 
 This role is setting up docker and configuring it from official repositories.
 
--   install docker
+-   install docker or docker-ce
+-   control the docker-ce repository
+-   optional: install docker-compose
 -   start docker service
 -   create docker group
 -   add users to group
@@ -73,6 +75,25 @@ wtd_srv_docker_package: "docker"
 # State can be present|latest|absent
 wtd_srv_docker_package_state: "present"
 
+# Define the source of docker:
+# Source can be dist|ce
+# dist = repository of your distribution
+# ce = official community docker repository
+wtd_srv_docker_package_source: "dist"
+# Only used for source = ce|ee
+# *_enabled can be 0|1
+wtd_srv_docker_package_edge_enabled: 0
+wtd_srv_docker_package_test_enabled: 0
+
+# Docker Compose Packages
+# State can be present|latest|absent|unmanaged
+wtd_srv_docker_compose_package_state: "unmanaged"
+# Source can be binary
+wtd_srv_docker_compose_package_source: "binary"
+# Only used, when source = binary
+wtd_srv_docker_compose_package_version: "1.24.1"
+wtd_srv_docker_compose_package_path: "/usr/local/bin/docker-compose"
+
 ## Service Management
 wtd_srv_docker_service: "docker"
 # State can be started|stopped
@@ -105,6 +126,8 @@ can be done in a
 
 #### Advanced
 
+Add users to the docker group.
+
 ```
 - hosts: all
   roles:
@@ -113,6 +136,16 @@ can be done in a
         - user1
         - user2
       wtd_srv_docker_service_enabled: "no"
+```
+
+Use the docker-ce version and install docker-compose.
+
+```
+- hosts: all
+  roles:
+    - role: while_true_do.srv_docker
+      wtd_srv_docker_compose_package_state: "present"
+      wtd_srv_docker_package_source: "ce"
 ```
 
 ## Known Issues

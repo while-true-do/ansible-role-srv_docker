@@ -3,4 +3,5 @@
   hosts: all
   roles:
     - role: while_true_do.srv_docker
+      wtd_srv_docker_package_source: "ce"
       wtd_srv_docker_compose_package_state: "present"
