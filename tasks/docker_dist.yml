@@ -1,0 +1,29 @@
+---
+# tasks file for while_true_do.srv_docker
+
+- name: Include docker Package Vars
+  include_vars: "docker_{{ wtd_srv_docker_package_source }}.yml"
+  tags:
+    - docker
+    - container
+    - package
+
+- name: Remove docker conflicting Packages
+  package:
+    name: "{{ wtd_srv_docker_package_conflict }}"
+    state: "absent"
+  become: true
+  tags:
+    - docker
+    - container
+    - package
+
+- name: Manage docker Packages
+  package:
+    name: "{{ wtd_srv_docker_package }}"
+    state: "{{ wtd_srv_docker_package_state }}"
+  become: true
+  tags:
+    - docker
+    - container
+    - package

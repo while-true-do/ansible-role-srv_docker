@@ -1,0 +1,34 @@
+---
+# tasks file for while_true_do.srv_docker
+
+- name: Install docker-compose (binary)
+  get_url:
+    url: "https://github.com/docker/compose/releases/download/{{ wtd_srv_docker_compose_package_version }}/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}"  # noqa 204
+    dest: "{{ wtd_srv_docker_compose_package_path }}"
+    owner: "root"
+    group: "root"
+    mode: 0755
+    force: true
+  become: true
+  when:
+    - wtd_srv_docker_compose_package_source == "binary"
+    - wtd_srv_docker_compose_package_state != "absent"
+  tags:
+    - docker
+    - container
+    - development
+    - package
+
+- name: Remove docker-compose (binary)
+  file:
+    path: "{{ wtd_srv_docker_compose_package_path }}"
+    state: "absent"
+  become: true
+  when:
+    - wtd_srv_docker_compose_package_source == "binary"
+    - wtd_srv_docker_compose_package_state == "absent"
+  tags:
+    - docker
+    - container
+    - development
+    - package

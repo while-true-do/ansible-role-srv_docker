@@ -1,0 +1,82 @@
+---
+# tasks file for while_true_do.srv_docker
+
+- name: Include docker Package Vars
+  include_vars: "docker_{{ wtd_srv_docker_package_source }}.yml"
+  tags:
+    - docker
+    - container
+    - package
+
+- name: Remove docker conflicting Packages
+  package:
+    name: "{{ wtd_srv_docker_package_conflict }}"
+    state: "absent"
+  become: true
+  tags:
+    - docker
+    - container
+    - package
+
+- name: Manage docker GPG Key
+  rpm_key:
+    key: "https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg"
+    state: "present"
+  become: true
+  tags:
+    - docker
+    - container
+    - package
+    - repository
+
+- name: Manage docker Repository
+  get_url:
+    url: "https://download.docker.com/linux/{{ ansible_distribution | lower }}/docker-{{ wtd_srv_docker_package_source }}.repo"
+    dest: "/etc/yum.repos.d/docker-{{ wtd_srv_docker_package_source }}.repo"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  become: true
+  tags:
+    - docker
+    - container
+    - package
+    - repository
+
+- name: Manage docker Edge Repository
+  ini_file:
+    dest: "/etc/yum.repos.d/docker-{{ wtd_srv_docker_package_source }}.repo"
+    section: "docker-{{ wtd_srv_docker_package_source }}-edge"
+    option: "enabled"
+    value: "{{ wtd_srv_docker_package_edge_enabled }}"
+    no_extra_spaces: true
+  become: true
+  tags:
+    - docker
+    - container
+    - package
+    - repository
+
+- name: Manage docker Test Repository
+  ini_file:
+    dest: "/etc/yum.repos.d/docker-{{ wtd_srv_docker_package_source }}.repo"
+    section: "docker-{{ wtd_srv_docker_package_source }}-test"
+    option: enabled
+    value: "{{ wtd_srv_docker_package_test_enabled }}"
+    no_extra_spaces: true
+  become: true
+  tags:
+    - docker
+    - container
+    - package
+    - repository
+
+- name: Manage docker Packages
+  package:
+    name: "{{ wtd_srv_docker_package }}"
+    state: "{{ wtd_srv_docker_package_state }}"
+  become: true
+  tags:
+    - docker
+    - container
+    - package

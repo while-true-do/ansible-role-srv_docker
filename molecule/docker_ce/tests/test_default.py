@@ -6,8 +6,14 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
 
 
-def test_docker_package(host):
-    pkg = host.package("docker")
+def test_docker_ce_repo(host):
+    file = host.file('/etc/yum.repos.d/docker-ce.repo')
+
+    assert file.exists
+
+
+def test_docker_ce_package(host):
+    pkg = host.package("docker-ce")
 
     assert pkg.is_installed
 
